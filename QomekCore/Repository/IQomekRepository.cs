@@ -8,10 +8,10 @@ namespace QomekCore.Repository
 {
     public interface IQomekRepository<T> where T : class
     {
-        T AddAsync(T entity);
-        T Edit(T entity);
+        Task<T> AddAsync(T entity);
+        T Update(T entity);
         void DeleteAsync(int id);
-        T Get(int id);
+        Task<T?> Get(int id);
 
     }
 }

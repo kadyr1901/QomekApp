@@ -9,8 +9,8 @@ namespace QomekCore.Repository
 {
     public class QomekRepository<T> : IQomekRepository<T> where T : class
     {
-        private readonly BlogDbContext _db;
-        public QomekRepository(BlogDbContext db)
+        private protected readonly QomekDbContext _db;
+        public QomekRepository(QomekDbContext db)
         {
             _db = db;
         }
@@ -21,20 +21,20 @@ namespace QomekCore.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void DeleteAsync(int id)
         {
-            await _db.RemoveAsync(id);
+            _db.Remove(id);
         }
 
-        public T Edit(T entity)
+        public T Update(T entity)
         {
             _db.Update(entity);
             return entity;
         }
 
-        public T Get(int id)
+        public async Task<T?> Get(int id)
         {
-            
+            return await _db.FindAsync<T>(id);
         }
     }
 }

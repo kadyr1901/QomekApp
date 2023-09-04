@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QomekAppBlog.Entities;
+using QomekAppBlog;
+using QomekData;
 using QomekData.Entities;
 
 namespace QomekAppBlog.Controllers
@@ -10,9 +11,9 @@ namespace QomekAppBlog.Controllers
     [Route("api/[controller]")]
     public class BlogController : Controller
     {
-        private BlogDbContext _db;
+        private readonly IQw
 
-        public BlogController(BlogDbContext db)
+        public BlogController(QomekDbContext db)
         {
             _db = db;
         }
