@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QomekAppBlog;
+using QomekCore.Repository;
 using QomekData;
 using QomekData.Entities;
 
@@ -11,17 +12,17 @@ namespace QomekAppBlog.Controllers
     [Route("api/[controller]")]
     public class BlogController : Controller
     {
-        private readonly IQw
+        private readonly IBlogRepository _blogService;
 
-        public BlogController(QomekDbContext db)
+        public BlogController(QomekDbContext db,IBlogRepository blogRepository)
         {
-            _db = db;
+            _blogService = blogRepository;
         }
 
         [HttpGet("GetBlog/{id}")]
         public async Task<ActionResult<Blog>> GetBlog(int id)
         {
-            var blog = await _db.Blogs.FindAsync(id);
+            var blog = await _blogService.Get(id);
 
             if (blog == null)
             {
@@ -34,25 +35,19 @@ namespace QomekAppBlog.Controllers
         [HttpPost("CreateBlog")]
         public async Task<ActionResult<Blog>> CreateBlog([FromBody]Blog blog)
         {
-            _db.Blogs.Add(blog);
-            await _db.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
+            return await _blogService.AddAsync(blog);
         }
 
         [HttpPut("UpdateBlog/{id}")]
         public async Task<IActionResult> UpdateBlog(int id,[FromBody] Blog blog)
         {
-            blog.Id= id;
-            _db.Entry(blog).State = EntityState.Modified;
-
             try
             {
-                await _db.SaveChangesAsync();
+                _blogService.Update(blog);
             }
             catch (Exception)
             {
-                if (!_db.Blogs.Any(b => b.Id == id))
+                if (await _blogService.Get(id)==null)
                 {
                     return NotFound();
                 }
@@ -65,26 +60,19 @@ namespace QomekAppBlog.Controllers
         [HttpDelete("DeleteBlog/{id}")]
         public async Task<IActionResult> DeleteBlog(int id)
         {
-            var blog = await _db.Blogs.FindAsync(id);
-
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            _db.Blogs.Remove(blog);
-            await _db.SaveChangesAsync();
+            await _blogService.DeleteAsync(id);
 
             return NoContent();
         }
         
         [HttpPost("AddComment/{blogId}")]
-        public async Task<IActionResult> AddCommentToBlog(int blogId, [FromBody] Comment comment)
+        public async Task<IActionResult> AddCommentsToBlog(int blogId, [FromBody] List<Comment> comments)
         {
-            var blog = await _db.Blogs.FirstOrDefaultAsync(i => i.Id == blogId);
-            blog.Comments.Add(comment);
-            await _db.SaveChangesAsync();
-            return Ok();
+            var blog=await _blogService.AddComments(comments,blogId);
+            if(blog != null)
+                return Ok();
+            else
+                return NotFound();
         }
         
     }

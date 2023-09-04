@@ -18,17 +18,20 @@ namespace QomekCore.Repository
         public async Task<T> AddAsync(T entity)
         {
             await _db.AddAsync(entity);
+            await _db.SaveChangesAsync();
             return entity;
         }
 
-        public void DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             _db.Remove(id);
+            _db.SaveChanges();
         }
 
         public T Update(T entity)
         {
             _db.Update(entity);
+            _db.SaveChanges();
             return entity;
         }
 

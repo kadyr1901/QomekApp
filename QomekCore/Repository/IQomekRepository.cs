@@ -10,7 +10,7 @@ namespace QomekCore.Repository
     {
         Task<T> AddAsync(T entity);
         T Update(T entity);
-        void DeleteAsync(int id);
+        Task DeleteAsync(int id);
         Task<T?> Get(int id);
 
     }

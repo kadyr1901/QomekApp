@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QomekAppBlog;
+using QomekData;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -19,9 +20,9 @@ namespace QomekAppAuth.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly BlogDbContext _db;
+        private readonly QomekDbContext _db;
 
-        public AuthController(BlogDbContext db)
+        public AuthController(QomekDbContext db)
         {
             _db = db;
         }
@@ -48,7 +49,7 @@ namespace QomekAppAuth.Controllers
             }
             var password=stringbuilder.ToString();
 
-            await _db.Users.AddAsync(new QomekAppBlog.Entities.User { UserName= model.Username, Password = password });
+            await _db.Users.AddAsync(new QomekData.Entities.User { UserName= model.Username, Password = password });
 
             await _db.SaveChangesAsync();
 

@@ -9,18 +9,23 @@ using System.Threading.Tasks;
 
 namespace QomekCore.Repository
 {
-    public class BlogRepository : QomekRepository<Blog>
+    public class BlogRepository : QomekRepository<Blog>, IBlogRepository
     {
         public BlogRepository(QomekDbContext db) : base(db)
         {
         }
 
-        public async Task AddComments(List<Comment> comments, int blogId)
+        public async Task<Blog?> AddComments(List<Comment> comments, int blogId)
         {
             var blog=await _db.Set<Blog>().FirstOrDefaultAsync(b => b.Id == blogId);
             if(blog!=null)
             {
                 blog.Comments.AddRange(comments);
+                return blog;
+            }
+            else
+            {
+                return null;
             }
         }
     }
