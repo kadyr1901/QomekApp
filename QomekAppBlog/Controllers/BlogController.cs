@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QomekAppBlog.Entities;
+using QomekData.Entities;
 
 namespace QomekAppBlog.Controllers
 {
