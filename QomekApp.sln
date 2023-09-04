@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QomekAppAuth", "QomekAppAuth\QomekAppAuth.csproj", "{128DAA22-53C3-4DA7-9C3D-861359BF1DE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QomekAppAuth", "QomekAppAuth\QomekAppAuth.csproj", "{128DAA22-53C3-4DA7-9C3D-861359BF1DE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QomekAppBlog", "QomekAppBlog\QomekAppBlog.csproj", "{F02A5F46-8E4F-4F96-B59B-E491384A47EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QomekAppBlog", "QomekAppBlog\QomekAppBlog.csproj", "{F02A5F46-8E4F-4F96-B59B-E491384A47EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QomekAppWeather", "QomekAppWeather\QomekAppWeather.csproj", "{F2F54A6F-9913-4D88-888C-A0E934536541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QomekAppWeather", "QomekAppWeather\QomekAppWeather.csproj", "{F2F54A6F-9913-4D88-888C-A0E934536541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QomekData", "QomekData\QomekData.csproj", "{F5EB1379-BE92-41EE-BC16-3ED9A8DB22BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QomekCore", "QomekCore\QomekCore.csproj", "{98E1EBA0-8B55-480E-B700-5641737C1F7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{F2F54A6F-9913-4D88-888C-A0E934536541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2F54A6F-9913-4D88-888C-A0E934536541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2F54A6F-9913-4D88-888C-A0E934536541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5EB1379-BE92-41EE-BC16-3ED9A8DB22BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5EB1379-BE92-41EE-BC16-3ED9A8DB22BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5EB1379-BE92-41EE-BC16-3ED9A8DB22BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5EB1379-BE92-41EE-BC16-3ED9A8DB22BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E1EBA0-8B55-480E-B700-5641737C1F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E1EBA0-8B55-480E-B700-5641737C1F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E1EBA0-8B55-480E-B700-5641737C1F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E1EBA0-8B55-480E-B700-5641737C1F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
